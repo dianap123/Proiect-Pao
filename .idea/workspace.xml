@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c36d738-92ec-4d15-8d6f-01225ade1862" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/proiect/person/Nurse.class" afterPath="$PROJECT_DIR$/out/production/proiect/person/Nurse.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/proiect/person/Patient.class" afterPath="$PROJECT_DIR$/out/production/proiect/person/Patient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/proiect/serviceClasses/DoctorService.class" afterPath="$PROJECT_DIR$/out/production/proiect/serviceClasses/DoctorService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/proiect/serviceClasses/NurseService.class" afterPath="$PROJECT_DIR$/out/production/proiect/serviceClasses/NurseService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/proiect/serviceClasses/PatientService.class" afterPath="$PROJECT_DIR$/out/production/proiect/serviceClasses/PatientService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/clinicServices/ConsultationResult.java" afterPath="$PROJECT_DIR$/src/clinicServices/ConsultationResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/clinicServices/Medicine.java" afterPath="$PROJECT_DIR$/src/clinicServices/Medicine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/clinicServices/Prescription.java" afterPath="$PROJECT_DIR$/src/clinicServices/Prescription.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/person/Nurse.java" afterPath="$PROJECT_DIR$/src/person/Nurse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/person/Patient.java" afterPath="$PROJECT_DIR$/src/person/Patient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/serviceClasses/DoctorService.java" afterPath="$PROJECT_DIR$/src/serviceClasses/DoctorService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/serviceClasses/NurseService.java" afterPath="$PROJECT_DIR$/src/serviceClasses/NurseService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/serviceClasses/PatientService.java" afterPath="$PROJECT_DIR$/src/serviceClasses/PatientService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/serviceClasses/Service.java" afterPath="$PROJECT_DIR$/src/serviceClasses/Service.java" />
-    </list>
+    <list default="true" id="3c36d738-92ec-4d15-8d6f-01225ade1862" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -235,9 +219,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-30" />
-    <option name="width" value="1920" />
-    <option name="height" value="1110" />
+    <option name="x" value="67" />
+    <option name="y" value="25" />
+    <option name="width" value="1853" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -780,15 +765,15 @@
       <workItem from="1556204591195" duration="1998000" />
       <workItem from="1556354215091" duration="4447000" />
       <workItem from="1556438181574" duration="7602000" />
-      <workItem from="1556541125372" duration="4864000" />
+      <workItem from="1556541125372" duration="5437000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43896000" />
+    <option name="totallyTimeSpent" value="44469000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-30" width="1920" height="1110" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -800,12 +785,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31770834" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291959" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15729167" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16297895" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
