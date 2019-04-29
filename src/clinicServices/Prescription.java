@@ -2,23 +2,26 @@ package clinicServices;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Prescription {
-    private ArrayList<Medicine> medicines = new ArrayList<Medicine>();
-    String obs;
+    //contine medicamentul si cantitatea
+    private Map<String, Double> medicines = new HashMap<>();
+    private String obs;
 
     public Prescription() {}
 
-    public Prescription(ArrayList<Medicine> medicines, String obs) {
+    public Prescription(Map<String, Double> medicines, String obs) {
         this.medicines = medicines;
         this.obs = obs;
     }
 
-    public ArrayList<Medicine> getMedicines() {
+    public Map<String, Double> getMedicines() {
         return medicines;
     }
 
-    public void setMedicines(ArrayList<Medicine> medicines) {
+    public void setMedicines(Map<String, Double> medicines) {
         this.medicines = medicines;
     }
 
@@ -30,3 +33,4 @@ public class Prescription {
         this.obs = obs;
     }
 }
+

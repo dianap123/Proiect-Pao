@@ -11,6 +11,7 @@ import person.Person;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 /*Service class which provides common services for all types of persons. It is extended by DoctorService, PacientService and NurseService*/
@@ -159,17 +160,14 @@ public class Service {
                     System.out.println("Disease: " + disease);
                     Prescription prescription = consultationResults.get(i).getPrescription();
                     System.out.println("Presctiption:");
-                    System.out.println("Medicines:");
-                    ArrayList<Medicine> medicines = prescription.getMedicines();
-                    for (Medicine medicine: medicines) {
-                        System.out.println(medicine.toString());
-                    }
+                    Map<String, Double> medicines = prescription.getMedicines();
+                    System.out.println(medicines);
                     System.out.println("Other obs.:");
                     System.out.println(prescription.getObs());
 
                 }
                 else {
-                    System.out.println("Conclusion: " + consultationResults.get(i).getOtherObs());
+                    System.out.println("Conclusion: " + consultationResults.get(i).getConclusion());
                 }
             }
         }

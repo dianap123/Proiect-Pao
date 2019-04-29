@@ -2,11 +2,15 @@ package serviceClasses;
 
 
 import clinicServices.Appointment;
+import clinicServices.Medicine;
 import org.omg.PortableInterceptor.INACTIVE;
 import person.Doctor;
 import person.Patient;
 import person.Person;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -59,6 +63,20 @@ public class PatientService extends Service{
     public void showListOfDoctors(ArrayList<Doctor> doctors) {
         for (Doctor doctor : doctors) {
             System.out.println(doctor.getFirstName() + " " + doctor.getLastName());
+        }
+    }
+
+    public void showListOfMedicines() {
+        CsvParser csvParser = new CsvParser();
+        Path path = Paths.get("/home/diana/An2/PAO/proiect/Files/medicines.csv");
+        Map<String, List<String>> medicinesFile = csvParser.read(path);
+        int numberOfMedicines = medicinesFile.get("name").size();
+        for (int i = 0; i < numberOfMedicines; i++) {
+            String name = medicinesFile.get("name").get(i);
+            String effect = medicinesFile.get("effect").get(i);
+            String administration = medicinesFile.get("administration").get(i);
+            Medicine m = new Medicine(name, effect, administration);
+            System.out.println(m.toString());
         }
     }
 
@@ -135,28 +153,61 @@ public class PatientService extends Service{
     /*Run the program*/
     public void start() {
 
-        /*Create an instance of DoctorService to access the list of all doctors*/
-        DoctorService doctorService = new DoctorService();
 
-        /*Create an instance of Doctor for testing*/
-        /*It is necessary when displaying list of doctors, list of prices etc*/
-        Map<String, Double> services = new HashMap<>();
-        services.put("Consultatie generala", 100.0);
-        services.put("Consultatie simpla", 50.0);
-        LocalDate date = LocalDate.of(2000, 1,1);
-        Doctor doctor = new Doctor("Andreea", "Calinescu", "2345678912345", "075231479", "address@email", 'f', date, "address", "Dermatologie", "Dermatolog", services);
-        ArrayList<Doctor> doctors = doctorService.getDoctors();
-        doctors.add(doctor);
-        doctorService.setDoctors(doctors);
 
         /*Create an instance of patient for testing*/
-        Patient p1 = new Patient("Ioana", "Marinescu", "2222222222222", "0712345698", "address@email", 'f', date, "address");
-        patients.add(p1);
-        /*Add here in order to be found at log in*/
-        super.addPerson(p1);
+
+        CsvParser csvParser = new CsvParser();
+        Path path = Paths.get("/home/diana/An2/PAO/proiect/Files/patients.csv");
+        Map<String, List<String>> patientsInfo= csvParser.read(path);
+        int numberOfPatients = patientsInfo.get("firstName").size();
+        for (int i = 0; i < numberOfPatients; i++) {
+            String firstname = patientsInfo.get("firstName").get(i);
+            String lastName = patientsInfo.get("lastName").get(i);
+            String CNP = patientsInfo.get("CNP").get(i);
+            String telephoneNumber = patientsInfo.get("telephoneNumber").get(i);
+            String emailAddress = patientsInfo.get("emailAddress").get(i);
+            char gender = patientsInfo.get("gender").get(i).charAt(0);
+            LocalDate date1 = LocalDate.parse(patientsInfo.get("date").get(i));
+            String address = patientsInfo.get("address").get(i);
+            Patient p = new Patient(firstname, lastName, CNP, telephoneNumber, emailAddress, gender, date1, address);
+            patients.add(p);
+            super.addPerson(p);
+        }
+
+          /*Create an instance of DoctorService to access the list of all doctors*/
+        DoctorService doctorService = new DoctorService();
+        ArrayList<Doctor> doctors = doctorService.getDoctors();
+        path = Paths.get("/home/diana/An2/PAO/proiect/Files/doctors.csv");
+        Map<String, List<String>> doctorsInfo = csvParser.read(path);
+        int numberOfDoctors= doctorsInfo.get("firstName").size();
+        for (int i = 0; i < numberOfDoctors; i++) {
+            String firstname = doctorsInfo.get("firstName").get(i);
+            String lastName = doctorsInfo.get("lastName").get(i);
+            String CNP = doctorsInfo.get("CNP").get(i);
+            String telephoneNumber = doctorsInfo.get("telephoneNumber").get(i);
+            String emailAddress = doctorsInfo.get("emailAddress").get(i);
+            char gender = doctorsInfo.get("gender").get(i).charAt(0);
+            LocalDate date1 = LocalDate.parse(doctorsInfo.get("date").get(i));
+            String address = doctorsInfo.get("address").get(i);
+            String section = doctorsInfo.get("section").get(i);
+            String specialization = doctorsInfo.get("specialization").get(i);
+            Map<String, Double> servicesMap = new HashMap<>();
+            String services = doctorsInfo.get("services").get(i);
+            String [] pairs = services.split(" ");
+            for (String pair: pairs) {
+                String [] service = pair.split("-");
+                servicesMap.put(service[0], Double.parseDouble(service[1]));
+            }
+            Doctor d = new Doctor(firstname, lastName, CNP, telephoneNumber, emailAddress, gender, date1, address, section, specialization, servicesMap);
+            doctors.add(d);
+        }
+        doctorService.setDoctors(doctors);
+
         Scanner input = new Scanner(System.in);
         Patient currentPacient;
         if (this.askForAccount()) {
+            csvParser.write("PatientService: Login", new Timestamp(System.currentTimeMillis()));
             currentPacient = this.login();
             if (currentPacient == null) {
                 System.out.println("This account does not exist. Please connect again.");
@@ -164,6 +215,7 @@ public class PatientService extends Service{
             }
         }
         else {
+            csvParser.write("PatientService: Create account", new Timestamp(System.currentTimeMillis()));
             currentPacient = this.createAccount();
         }
             int option;
@@ -174,11 +226,13 @@ public class PatientService extends Service{
                 System.out.println("3: Show medical history;");
                 System.out.println("4: Show list of services and prices for a doctor");
                 System.out.println("5: Show list of doctors;");
-                System.out.println("6: Exit.");
+                System.out.println("6: Show list of medicines;");
+                System.out.println("7: Exit.");
                 option = input.nextInt();
                 switch (option) {
                     case 1: {
                         makeAppointment(currentPacient, doctorService.getDoctors());
+                        csvParser.write("PatientService.MakeAnAppointment", new Timestamp(System.currentTimeMillis()));
                         break;
                     }
                     case 2: {
@@ -187,6 +241,7 @@ public class PatientService extends Service{
                         String fname = input.next();
                         System.out.println("Last name: ");
                         String lname = input.next();
+                        Doctor doctor;
                         doctor = this.getDoctorByName(fname, lname, doctorService.getDoctors());
                         if (doctor != null)
                             this.cancelAppointment(currentPacient, doctor);
@@ -194,10 +249,12 @@ public class PatientService extends Service{
                             System.out.println("This doctor does not exist in our list. List of doctors: ");
                             showListOfDoctors(doctorService.getDoctors());
                         }
+                        csvParser.write("PatientService: Cancel an appointment", new Timestamp(System.currentTimeMillis()));
                         break;
                     }
                     case 3: {
                         showMedicalHistory(currentPacient);
+                        csvParser.write("PatientService: Show medical history", new Timestamp(System.currentTimeMillis()));
                         break;
                     }
                     case 4: {
@@ -206,6 +263,7 @@ public class PatientService extends Service{
                         String fname = input.next();
                         System.out.println("Last name: ");
                         String lname = input.next();
+                        Doctor doctor;
                         doctor = this.getDoctorByName(fname, lname, doctorService.getDoctors());
                         if (doctor != null) {
                             this.checkServicesandPrices(doctor);
@@ -214,14 +272,21 @@ public class PatientService extends Service{
                             System.out.println("This doctor does not exist in our list. List of doctors: ");
                             showListOfDoctors(doctorService.getDoctors());
                         }
+                        csvParser.write("PatientService: Show list of services and prices for a doctor", new Timestamp(System.currentTimeMillis()));
                         break;
                     }
                     case 5: {
                         this.showDoctors(doctorService.getDoctors());
+                        csvParser.write("PatientService: Show list of doctors", new Timestamp(System.currentTimeMillis()));
+                        break;
+                    }
+                    case 6: {
+                        this.showListOfMedicines();
+                        csvParser.write("PatientService: Show list of medicines", new Timestamp(System.currentTimeMillis()));
                         break;
                     }
                 }
-            } while (option >= 0 && option <= 5);
+            } while (option >= 0 && option <= 6);
         }
     }
 

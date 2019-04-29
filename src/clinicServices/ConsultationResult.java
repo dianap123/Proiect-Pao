@@ -6,16 +6,15 @@ package clinicServices;
 public class ConsultationResult {
     private String disease;
     private Prescription prescription;
-    String otherObs;
+    private String conclusion;
 
-    public ConsultationResult(String disease, Prescription prescription, String otherObs) {
+    public ConsultationResult(String disease, Prescription prescription) {
         this.disease = disease;
         this.prescription = prescription;
-        this.otherObs = otherObs;
     }
 
-    public ConsultationResult(String otherObs) {
-        this.otherObs = otherObs;
+    public ConsultationResult(String conclusion) {
+        this.conclusion = conclusion;
     }
 
     public String getDisease() {
@@ -34,11 +33,11 @@ public class ConsultationResult {
         this.prescription = prescription;
     }
 
-    public String getOtherObs() {
-        return otherObs;
+    public String getConclusion() {
+        return conclusion;
     }
 
-    public void setOtherObs(String otherObs) {
-        this.otherObs = otherObs;
+    public void setConclusion(String conclusion) {
+        this.conclusion = conclusion;
     }
 }

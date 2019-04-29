@@ -1,18 +1,15 @@
 package clinicServices;
 
 /*Class for medicines used in a prescription*/
-/*It contains the name of the medicine, the total quantity the patient must take during the treatment, the number of days it must be taken and the number of administrations/day*/
 public class Medicine {
-    protected String name;
-    double quantity;
-    int numberOfDays;
-    int itemsPerDay;
+    private String name;
+    private String effect;
+    private String administration;
 
-    public Medicine(String name, double quantity, int numberOfDays, int itemsPerDay) {
+    public Medicine(String name, String effect, String administration) {
         this.name = name;
-        this.quantity = quantity;
-        this.numberOfDays = numberOfDays;
-        this.itemsPerDay = itemsPerDay;
+        this.effect = effect;
+        this.administration = administration;
     }
 
     public String getName() {
@@ -23,32 +20,24 @@ public class Medicine {
         this.name = name;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public String getEffect() {
+        return effect;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setEffect(String effect) {
+        this.effect = effect;
     }
 
-    public int getNumberOfDays() {
-        return numberOfDays;
+    public String getAdministration() {
+        return administration;
     }
 
-    public void setNumberOfDays(int numberOfDays) {
-        this.numberOfDays = numberOfDays;
-    }
-
-    public int getItemsPerDay() {
-        return itemsPerDay;
-    }
-
-    public void setItemsPerDay(int itemsPerDay) {
-        this.itemsPerDay = itemsPerDay;
+    public void setAdministration(String administration) {
+        this.administration = administration;
     }
 
     @Override
     public String toString() {
-        return "Name: " + this.name + "\nQuantity: " + this.quantity + "\nNumber of days: " + this.numberOfDays + "\nAdministrations/day: " + this.itemsPerDay;
+        return "Name: " + this.name + "\nEffect: " + this.effect + "\nAdministation: " + this.administration;
     }
 }

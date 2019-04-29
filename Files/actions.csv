@@ -1,0 +1,43 @@
+PatientService: Create account, 2019-04-29 15:32:32.552
+PatientService.MakeAnAppointment, 2019-04-29 15:33:20.578
+PatientService: Cancel an appointment, 2019-04-29 15:33:29.668
+PatientService: Show medical history, 2019-04-29 15:33:33.336
+PatientService: Show list of services and prices for a doctor, 2019-04-29 15:33:40.478
+PatientService: Show list of doctors, 2019-04-29 15:33:47.277
+PatientService: Login, 2019-04-29 15:34:24.996
+PatientService: Show medical history, 2019-04-29 15:34:33.374
+DoctorService: Login, 2019-04-29 15:34:52.32
+DoctorService: Login, 2019-04-29 15:35:36.412
+DoctorService: Cancel an appointment, 2019-04-29 15:35:47.727
+DoctorService: Add the result of a consultation for a pacient, 2019-04-29 15:36:01.689
+DoctorService: Add a vaccine in medical history for a pacient, 2019-04-29 15:36:12.632
+DoctorService: Show medical history for a pacient, 2019-04-29 15:36:19.159
+DoctorService: Login, 2019-04-29 15:36:44.722
+DoctorService: Add a vaccine in medical history for a pacient, 2019-04-29 15:36:59.312
+DoctorService: Show medical history for a pacient, 2019-04-29 15:37:06.182
+DoctorService: Login, 2019-04-29 15:40:23.252
+DoctorService: Add a vaccine in medical history for a pacient, 2019-04-29 15:40:39.454
+DoctorService: Show medical history for a pacient, 2019-04-29 15:40:45.582
+NurseService: Login, 2019-04-29 15:41:55.893
+NurseService: Add height, weigh and fat percentage for a pacient, 2019-04-29 15:42:20.601
+NurseService: Add an injection for a pacient, 2019-04-29 15:42:32.802
+NurseService: Show medical history for a pacient, 2019-04-29 15:42:41.053
+DoctorService: Login, 2019-04-29 16:29:52.091
+DoctorService: Login, 2019-04-29 16:31:13.705
+DoctorService: Login, 2019-04-29 16:32:23.786
+DoctorService: Login, 2019-04-29 16:34:20.727
+DoctorService: Login, 2019-04-29 16:42:00.974
+DoctorService: Add the result of a consultation for a pacient, 2019-04-29 16:42:34.934
+DoctorService: Show medical history for a pacient, 2019-04-29 16:42:44.463
+PatientService: Login, 2019-04-29 16:55:40.681
+PatientService: Show list of medicines, 2019-04-29 16:55:48.066
+PatientService: Login, 2019-04-29 22:16:53.801
+PatientService: Login, 2019-04-29 22:17:55.747
+PatientService: Cancel an appointment, 2019-04-29 22:18:05.784
+PatientService: Show medical history, 2019-04-29 22:18:09.575
+PatientService: Show list of services and prices for a doctor, 2019-04-29 22:18:19.176
+PatientService: Show list of medicines, 2019-04-29 22:18:26.482
+DoctorService: Login, 2019-04-29 22:19:17.768
+DoctorService: Show medical history for a pacient, 2019-04-29 22:19:44.785
+NurseService: Login, 2019-04-29 22:19:55.19
+NurseService: Show medical history for a pacient, 2019-04-29 22:20:22.374

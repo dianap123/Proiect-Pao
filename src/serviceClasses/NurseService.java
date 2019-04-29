@@ -6,11 +6,11 @@ import person.Nurse;
 import person.Patient;
 import person.Person;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class NurseService extends Service {
 
@@ -63,40 +63,105 @@ public class NurseService extends Service {
         }
         return null;
     }
+
+    public Doctor getDoctorByName(String firstname, String lastname, ArrayList<Doctor> doctors) {
+        for (Doctor doctor : doctors) {
+            if (doctor.getLastName().equals(lastname) && doctor.getFirstName().equals(firstname))
+                return doctor;
+        }
+        return null;
+    }
+
     public void start() {
 
         DoctorService doctorService = new DoctorService();
 
         /*Create an instance of doctor at which the nurse is assigned*/
-        Map<String, Double> services = new HashMap<>();
-        services.put("Consultatie generala", 100.0);
-        services.put("Consultatie simpla", 50.0);
-        LocalDate date1 = LocalDate.of(1998, 5,3);
-        Doctor d1 = new Doctor("Andreea", "Mihai", "2345678912345", "072342424234", "address@email", 'f', date1, "address", "Dermatologie", "Dermatolog", services);
-        ArrayList<Doctor> aux = doctorService.getDoctors();
-        aux.add(d1);
-        doctorService.setDoctors(aux);
+
+        CsvParser csvParser = new CsvParser();
+        Path path = Paths.get("/home/diana/An2/PAO/proiect/Files/doctors.csv");
+        Map<String, List<String>> doctorsInfo = csvParser.read(path);
+        ArrayList<Doctor> doctors = doctorService.getDoctors();
+        int numberOfDoctors= doctorsInfo.get("firstName").size();
+        for (int i = 0; i < numberOfDoctors; i++) {
+            String firstname = doctorsInfo.get("firstName").get(i);
+            String lastName = doctorsInfo.get("lastName").get(i);
+            String CNP = doctorsInfo.get("CNP").get(i);
+            String telephoneNumber = doctorsInfo.get("telephoneNumber").get(i);
+            String emailAddress = doctorsInfo.get("emailAddress").get(i);
+            char gender = doctorsInfo.get("gender").get(i).charAt(0);
+            LocalDate date1 = LocalDate.parse(doctorsInfo.get("date").get(i));
+            String address = doctorsInfo.get("address").get(i);
+            String section = doctorsInfo.get("section").get(i);
+            String specialization = doctorsInfo.get("specialization").get(i);
+            Map<String, Double> servicesMap = new HashMap<>();
+            String services = doctorsInfo.get("services").get(i);
+            String [] pairs = services.split(" ");
+            for (String pair: pairs) {
+                String [] service = pair.split("-");
+                servicesMap.put(service[0], Double.parseDouble(service[1]));
+            }
+            Doctor d = new Doctor(firstname, lastName, CNP, telephoneNumber, emailAddress, gender, date1, address, section, specialization, servicesMap);
+            doctors.add(d);
+        }
+        doctorService.setDoctors(doctors);
 
         /*Nurse*/
-        Nurse n1 = new Nurse("Camelia", "Popescu", "234567891234", "075112394", "adresa@email", 'f', date1, "adresa", d1);
-        nurses.add(n1);
-        this.addPerson(n1);
+        path = Paths.get("/home/diana/An2/PAO/proiect/Files/nurses.csv");
+        Map<String, List<String>> nursesInfo= csvParser.read(path);
+        int numberOfNurses= nursesInfo.get("firstName").size();
+        for (int i = 0; i < numberOfNurses; i++) {
+            String firstname = nursesInfo.get("firstName").get(i);
+            String lastName = nursesInfo.get("lastName").get(i);
+            String CNP = nursesInfo.get("CNP").get(i);
+            String telephoneNumber = nursesInfo.get("telephoneNumber").get(i);
+            String emailAddress = nursesInfo.get("emailAddress").get(i);
+            char gender = nursesInfo.get("gender").get(i).charAt(0);
+            LocalDate date1 = LocalDate.parse(nursesInfo.get("date").get(i));
+            String address = nursesInfo.get("address").get(i);
+            String doctorFname = nursesInfo.get("doctorFname").get(i);
+            String doctorLname = nursesInfo.get("doctorLname").get(i);
+            Doctor d = getDoctorByName(doctorFname, doctorLname, doctors);
+            String grade = nursesInfo.get("grade").get(i);
+            Nurse n = new Nurse(firstname, lastName, CNP, telephoneNumber, emailAddress, gender, date1, address, d, grade);
+            nurses.add(n);
+            this.addPerson(n);
+        }
+
 
         /*Pacient*/
         PatientService patientService = new PatientService();
-        Patient p1 = new Patient("Mihai", "Nastase", "1111111111111", "0723213131", "address@email", 'm', date1, "address");
+
         ArrayList<Patient> patients = patientService.getPatients();
-        patients.add(p1);
+        path = Paths.get("/home/diana/An2/PAO/proiect/Files/patients.csv");
+        Map<String, List<String>> patientsInfo= csvParser.read(path);
+        int numberOfPatients = patientsInfo.get("firstName").size();
+        for (int i = 0; i < numberOfPatients; i++) {
+            String firstname = patientsInfo.get("firstName").get(i);
+            String lastName = patientsInfo.get("lastName").get(i);
+            String CNP = patientsInfo.get("CNP").get(i);
+            String telephoneNumber = patientsInfo.get("telephoneNumber").get(i);
+            String emailAddress = patientsInfo.get("emailAddress").get(i);
+            char gender = patientsInfo.get("gender").get(i).charAt(0);
+            LocalDate date = LocalDate.parse(patientsInfo.get("date").get(i));
+            String address = patientsInfo.get("address").get(i);
+            Patient p = new Patient(firstname, lastName, CNP, telephoneNumber, emailAddress, gender, date, address);
+            this.addPerson(p);
+            patients.add(p);
+        }
         patientService.setPatients(patients);
-        this.addPerson(p1);
+
+        patientService.setPatients(patients);
 
         Scanner input = new Scanner(System.in);
         int option;
         Nurse currentNurse;
         if (!askForAccount()) {
+            csvParser.write("NurseService: Create account", new Timestamp(System.currentTimeMillis()));
             currentNurse = this.createAccount();
         }
         else {
+            csvParser.write("NurseService: Login", new Timestamp(System.currentTimeMillis()));
             currentNurse = this.login();
             if (currentNurse == null) {
                 System.out.println("This account does not exist. Please connect again.");
@@ -122,6 +187,7 @@ public class NurseService extends Service {
                         this.addHeightWeightFat(patient);
                     else
                         System.out.println("This patient does not exist in our system. Please try again.");
+                    csvParser.write("NurseService: Add height, weigh and fat percentage for a pacient", new Timestamp(System.currentTimeMillis()));
                     break;
                 }
                 case 2:{
@@ -135,6 +201,7 @@ public class NurseService extends Service {
                         this.addInjection(patient);
                     else
                         System.out.println("This patient does not exist in our system. Please try again.");
+                    csvParser.write("NurseService: Add an injection for a pacient", new Timestamp(System.currentTimeMillis()));
                     break;
                 }
                 case 3: {
@@ -148,6 +215,7 @@ public class NurseService extends Service {
                         showMedicalHistory(patient);
                     else
                         System.out.println("This patient does not exist in our system. Please try again.");
+                    csvParser.write("NurseService: Show medical history for a pacient", new Timestamp(System.currentTimeMillis()));
                 }
             }
         } while (option == 1 || option == 2 || option == 3);

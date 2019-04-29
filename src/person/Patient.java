@@ -112,4 +112,5 @@ public class Patient extends Person {
         Collections.sort(vaccines);
         Collections.sort(injections);
     }
+
 }

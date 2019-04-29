@@ -6,11 +6,13 @@ import java.time.LocalDate;
 /*She/he can be assigned when the account is created or after that*/
 
 public class Nurse extends Person {
+    private String grade;
     private Doctor assignedDoctor;
 
-    public Nurse(String firstName, String lastName, String CNP, String telephoneNumber, String emailAdress, char gender, LocalDate birthday, String address, Doctor assignedDoctor) {
+    public Nurse(String firstName, String lastName, String CNP, String telephoneNumber, String emailAdress, char gender, LocalDate birthday, String address, Doctor assignedDoctor, String grade) {
         super(firstName, lastName, CNP, telephoneNumber, emailAdress, gender, birthday, address);
         this.assignedDoctor = assignedDoctor;
+        this.grade = grade;
     }
 
     public Nurse(String firstName, String lastName, String CNP, String telephoneNumber, String emailAdress, char gender, LocalDate birthday, String address) {
