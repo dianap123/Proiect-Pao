@@ -3,7 +3,6 @@ package serviceClasses;
 
 import clinicServices.Appointment;
 import clinicServices.ConsultationResult;
-import clinicServices.Medicine;
 import clinicServices.Prescription;
 import person.Doctor;
 import person.Patient;
@@ -97,6 +96,7 @@ public class Service {
     /*Log in is made with CNP.*/
     /*This method is also overridden in derived classes*/
     protected Person login() {
+//        LoginForm loginForm = new LoginForm();
         System.out.println("Please enter your CNP:");
         Scanner input = new Scanner(System.in);
         String CNP = input.next();

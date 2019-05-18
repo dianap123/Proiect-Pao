@@ -1,6 +1,9 @@
 package serviceClasses;
 
 
+import GUI.MakeAppointment;
+import GUI.MedicalHIstory;
+import GUI.ShowDoctors;
 import clinicServices.Appointment;
 import clinicServices.Medicine;
 import org.omg.PortableInterceptor.INACTIVE;
@@ -83,6 +86,7 @@ public class PatientService extends Service{
     /*Method used by patients to make an appointment. They have to enter the name of the doctor, date and time.*/
     /*If the doctor is not available at that time, i.e. there is another appointment at the exact same time, an error message is displayed*/
     public void makeAppointment(Patient patient, ArrayList<Doctor> doctors) {
+        MakeAppointment makeAppointment = new MakeAppointment();
         Scanner input = new Scanner(System.in);
         System.out.println("At which doctor do you want to make an appointment?");
         System.out.println("First name: ");
@@ -231,8 +235,9 @@ public class PatientService extends Service{
                 option = input.nextInt();
                 switch (option) {
                     case 1: {
-                        makeAppointment(currentPacient, doctorService.getDoctors());
-                        csvParser.write("PatientService.MakeAnAppointment", new Timestamp(System.currentTimeMillis()));
+                        MakeAppointment ma = new MakeAppointment();
+//                        makeAppointment(currentPacient, doctorService.getDoctors());
+//                        csvParser.write("PatientService.MakeAnAppointment", new Timestamp(System.currentTimeMillis()));
                         break;
                     }
                     case 2: {
@@ -253,8 +258,9 @@ public class PatientService extends Service{
                         break;
                     }
                     case 3: {
-                        showMedicalHistory(currentPacient);
-                        csvParser.write("PatientService: Show medical history", new Timestamp(System.currentTimeMillis()));
+                          MedicalHIstory mh = new MedicalHIstory(currentPacient.getHeight(), currentPacient.getWeight(), currentPacient.getConsultationResults());
+//                        showMedicalHistory(currentPacient);
+//                        csvParser.write("PatientService: Show medical history", new Timestamp(System.currentTimeMillis()));
                         break;
                     }
                     case 4: {
@@ -276,8 +282,9 @@ public class PatientService extends Service{
                         break;
                     }
                     case 5: {
-                        this.showDoctors(doctorService.getDoctors());
-                        csvParser.write("PatientService: Show list of doctors", new Timestamp(System.currentTimeMillis()));
+//                        this.showDoctors(doctorService.getDoctors());
+//                        csvParser.write("PatientService: Show list of doctors", new Timestamp(System.currentTimeMillis()));
+                        ShowDoctors sd = new ShowDoctors(doctorService.getDoctors());
                         break;
                     }
                     case 6: {

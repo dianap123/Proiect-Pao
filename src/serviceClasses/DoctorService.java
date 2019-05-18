@@ -1,6 +1,9 @@
 package serviceClasses;
 
 
+import GUI.AddConsultationResult;
+import GUI.AddVaccine;
+import GUI.MedicalHIstory;
 import clinicServices.ConsultationResult;
 import clinicServices.Medicine;
 import clinicServices.Prescription;
@@ -233,6 +236,7 @@ public class DoctorService extends Service{
                     break;
                 }
                 case 2: {
+//                    AddConsultationResult acr = new AddConsultationResult();
                     System.out.println("Please enter pacient's name: ");
                     System.out.println("First name:");
                     String fname = input.next();
@@ -248,17 +252,18 @@ public class DoctorService extends Service{
                 }
 
                 case 3: {
-                    System.out.println("Please enter pacient's name: ");
-                    System.out.println("First name:");
-                    String fname = input.next();
-                    System.out.println("Last name: ");
-                    String lname = input.next();
-                    Patient patient = this.getPatientByName(fname, lname, patientService.getPatients());
-                    if (patient != null)
-                        this.addVaccine(patient);
-                    else
-                        System.out.println("This patient does not exist in our system. Please try again.");
-                    csvParser.write("DoctorService: Add a vaccine in medical history for a pacient", new Timestamp(System.currentTimeMillis()));
+                    AddVaccine av = new AddVaccine();
+//                    System.out.println("Please enter pacient's name: ");
+//                    System.out.println("First name:");
+//                    String fname = input.next();
+//                    System.out.println("Last name: ");
+//                    String lname = input.next();
+//                    Patient patient = this.getPatientByName(fname, lname, patientService.getPatients());
+//                    if (patient != null)
+//                        this.addVaccine(patient);
+//                    else
+//                        System.out.println("This patient does not exist in our system. Please try again.");
+//                    csvParser.write("DoctorService: Add a vaccine in medical history for a pacient", new Timestamp(System.currentTimeMillis()));
                     break;
                 }
                 case 4: {
@@ -268,11 +273,12 @@ public class DoctorService extends Service{
                     System.out.println("Last name: ");
                     String lname = input.next();
                     Patient patient = this.getPatientByName(fname, lname, patientService.getPatients());
-                    if (patient != null)
-                        this.showMedicalHistory(patient);
-                    else
-                        System.out.println("This patient does not exist in our system. Please try again.");
-                    csvParser.write("DoctorService: Show medical history for a pacient", new Timestamp(System.currentTimeMillis()));
+//                    if (patient != null)
+                        MedicalHIstory mh = new MedicalHIstory(patient.getHeight(), patient.getWeight(), patient.getConsultationResults());
+
+//                    else
+//                        System.out.println("This patient does not exist in our system. Please try again.");
+//                    csvParser.write("DoctorService: Show medical history for a pacient", new Timestamp(System.currentTimeMillis()));
                     break;
                 }
             }
