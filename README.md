@@ -1,4 +1,5 @@
 # Proiect-Pao
+Partea intai:
 
 Cele 8 tipuri de obiecte (fara clasele serviciu):
 1.Person
@@ -22,5 +23,10 @@ Interogarile/serviciile din cadrul aplicatiei:
 9.Add a vaccine in medical history for a pacient(DoctorService)
 10.Add height, weigh and fat percentage for a pacient(NurseService)
 11.Add an injection for a pacient(NurseService)
+12.Show list of medicines
 
 Colectii folosite: ArrayList, Map.
+
+Partea a doua:
+
+Fisiere pentru citirea informatiilor din clasele: Patient, Doctor, Nurse, Medicine.
